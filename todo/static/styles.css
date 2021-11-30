@@ -1,0 +1,28 @@
+body{
+    background-color: #fafafa;
+}
+
+h1{
+    color: gray;
+}
+#id_title{
+    width: 50%;
+}
+
+.create{
+    font-size: 0.7rem;
+    color: gray;
+}
+
+.task{
+    border: 1px solid silver;
+    border-radius: 0.25rem;
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+}
+
+#complete{
+    background-color: #eeeeee;
+}
+

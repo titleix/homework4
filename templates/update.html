@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="card">
+        <h5 class="card-header">Update Task</h5>
+        <div class="card-body">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class='col-8 my-1 mx-auto'>
+                        <div class="form-group">
+                            <label for="title">Task name</label>
+                            <input type="text" class="form-control" id="title" name="title" value={{ task.title }}>
+                        </div>
+                    </div>
+                    <div class="col-4 my-1 mx-auto">
+                        <div class="custom-control custom-switch">
+                            <label class="custom-control-label" for="status">Completed</label>
+                            <input type="checkbox" class="custom-control-input" id="status" name="status">
+                        </div>
+                    </div>
+                </div>
+                <div class="col my-1 mx-auto">
+                    <a href="{% url 'index' %}" class="btn btn-info" role="button"> <-Go Back</a>
+                    <input type="submit" class="btn btn-primary" name="update_item" value="Update">
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}

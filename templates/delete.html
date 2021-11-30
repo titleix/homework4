@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+  index
+{% endblock title %}
+
+{% block content %}
+
+
+    <p>Are you sure that you want to delete&nbsp;{{item}}</p>
+
+<a href="{% url 'index' %}">Cancel</a>
+
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    index
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+    <form method="POST" action="/">
+        {% csrf_token %} {{form.title}}
+        <input class="btn btn-primary" type="submit" value="ADD">
+    </form>
+
+
+    {% for task in tasks %}
+        {% if task.status %}
+            <div class="row task" id="complete">
+            <div class="col-md-6">
+                <s><b>{{task}}</b><br><span class="create">Created at: {{task.created }}</span></s>
+            </div>
+            <div class="col-md-6 justify-content-end">
+        {% else %}
+            <div class="row task">
+            <div class="col-md-6">
+                <b>{{task}}</b><br><span class="create">Created at: {{ task.created }}</span>
+            </div>
+            <div class="col-md-6 justify-content-end">
+            <a href="{% url 'crossoff_item' task.id %}" class="btn btn-success text-right" role="button"> Completed</a>
+        {% endif %}
+    <a class="btn btn-primary text-right" href="{% url 'update' task.id %}">Update</a>
+    <a class="btn btn-danger text-right" href="{% url 'delete' task.id %}">Delete</a>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock content %}
