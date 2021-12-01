@@ -11,12 +11,12 @@ class TaskForm(forms.ModelForm):
         fields = '__all__'
 
     widgets = {
-    'title': forms.TextInput(attrs={
-        'class': 'form-control',
-        'placeholder': "Add tasks"
-    }),
-    'status': forms.CheckboxInput(attrs={
-        'class': 'form-check-input',
-        'role': "switch"
-    })
- }
+        'title': forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': "Add tasks"
+        }),
+        'status': forms.CheckboxInput(attrs={
+            'class': 'form-check-input',
+            'role': "switch"
+        })
+    }

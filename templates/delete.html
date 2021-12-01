@@ -1,20 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %}
-  index
-{% endblock title %}
-
 {% block content %}
 
-
-    <p>Are you sure that you want to delete&nbsp;{{item}}</p>
-
-<a href="{% url 'index' %}">Cancel</a>
-
-
-<form method="POST" action="">
-    {% csrf_token %}
-    <input type="submit" value="Confirm">
-</form>
-
+    <div class="card">
+        <h5 class="card-header">Delete Task</h5>
+        <div class="card-body">
+            <p class="card-text">Are you sure that you want to delete&nbsp;<span style="color:#fe6993; background-color:lightgray; padding:0.2em; border:3px solid white; border-radius:5px;line-height:2em; padding:0.2em;">{{item}}</span></p>
+            <form method="POST">
+                {% csrf_token %}
+                <a class="btn btn-info text-white" href="{% url 'index' %}" role="button">No, go back</a>
+                <input type="submit" class="btn btn-danger" name="Confirm" value="Yes, delete">
+            </form>
+        </div>
+    </div>
 {% endblock content %}

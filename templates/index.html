@@ -1,38 +1,58 @@
 {% extends "base.html" %}
 
-{% block title %}
-    index
-{% endblock title %}
-
 {% block content %}
     <div class="container">
-    <form method="POST" action="/">
-        {% csrf_token %} {{form.title}}
-        <input class="btn btn-primary" type="submit" value="ADD">
-    </form>
-
-
-    {% for task in tasks %}
-        {% if task.status %}
-            <div class="row task" id="complete">
-            <div class="col-md-6">
-                <s><b>{{task}}</b><br><span class="create">Created at: {{task.created }}</span></s>
+        <div class="w-auto"></div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-11">
+                    <input type="text" class="form-control d-inline m-0" id="title" name="title" placeholder="Add tasks">
+                </div>
+                <div class="col-1">
+                    <button type="submit" class="btn btn-primary d-inline m-0">ADD</button>
+                </div>
             </div>
-            <div class="col-md-6 justify-content-end">
-        {% else %}
-            <div class="row task">
-            <div class="col-md-6">
-                <b>{{task}}</b><br><span class="create">Created at: {{ task.created }}</span>
-            </div>
-            <div class="col-md-6 justify-content-end">
-            <a href="{% url 'crossoff_item' task.id %}" class="btn btn-success text-right" role="button"> Completed</a>
-        {% endif %}
-    <a class="btn btn-primary text-right" href="{% url 'update' task.id %}">Update</a>
-    <a class="btn btn-danger text-right" href="{% url 'delete' task.id %}">Delete</a>
+        </form>
     </div>
-    </div>
-    {% endfor %}
-</div>
+        {% for task in tasks %}
+            {% if task.status %}
+                <div class="row task d-flex" id="complete">
+                <div class="col-md-6">
+                    <s><b>{{task.title}}</b><br><span class="create">Created at: {{task.created }}</span></s>
+                        <br><span class="create d-block>">
+    {% if task.updated > task.created and task.status%}
+        <s>Edited at: {{ task.updated }}</s>
+    {% elif task.updated > task.created and not task.status %}
+        Edited at: {{ task.updated }}
+    {% endif %}
+    </span>
+                </div>
 
+                <div class="col-md-6 d-flex justify-content-end">
+            {% else %}
+                <div class="row task">
+                <div class="col-md-6">
+                    <b>{{task}}</b><br><span class="create">Created at: {{ task.created }}</span>
+                        <br><span class="create d-block>">
+    {% if task.updated > task.created and task.status%}
+        <s>Edited at: {{ task.updated }}</s>
+    {% elif task.updated > task.created and not task.status %}
+        Edited at: {{ task.updated }}
+    {% endif %}
+    </span>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                <a href="{% url 'crossoff_item' task.id %}" class="btn btn-success m-1 btn-custom" role="button"> Completed</a>
+            {% endif %}
+        <a class="btn btn-primary m-1 btn-custom" href="{% url 'update' task.id %}">Update</a>
+        <a class="btn btn-danger m-1 btn-custom" href="{% url 'delete' task.id %}">Delete</a>
+        </div>
+
+        </div>
+        {% endfor %}
+        </div>
+        </div>
+    </div>
 
 {% endblock content %}
